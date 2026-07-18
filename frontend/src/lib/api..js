@@ -27,5 +27,19 @@ export function buildAuthHeaders(token, extraHeaders = {}) {
 }
 
 export async function apiFetch(endpoint, token, option = {}) {
+    const response = await fetch(`${API_BASE}${endpoint}`, {
+        ...options,
+        headers: buildAuthHeaders(token, option.headers),
+    });
 
+    if(!response.ok) {
+        const errText = await response.text();
+        throw new Error(errText || response.statusText);
+    }
+
+    if(response.status === 204) {
+        return null;
+    }
+
+    return response.json();
 }

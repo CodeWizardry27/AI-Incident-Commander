@@ -84,11 +84,26 @@ export default function AuthView({
                     {view === 'login' ? (
                         <span style={{color: 'var(--color-text-secondary)'}}>
                             New Operator?{' '}
+                            <span
+                                onClick={() => setView('signup')}
+                                style={{color: 'var(--color-accent)', cursor: 'pointer', fontWeight: 600}}
+                            >
+                                create an account
+                            </span>
                         </span>
-                        onclick={() => }
+                    ) : (
+                        <span style={{color: 'var(--color-text-secondary)'}}>
+                            Already registered?{' '}
+                            <span
+                                onClick={() => setView('login')}
+                                style={{color: 'var(--color-accent)', cursor: 'pointer', fontWeight: 600}}
+                                >
+                                Sign in here
+                            </span>
+                        </span>
                     )}
                 </div>
             </div>
         </div>
-    )
+    );
 }
